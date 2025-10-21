@@ -21,6 +21,8 @@ async fn main(req: Request, env: Env, _: Context) -> Result<Response> {
 
     Router::with_data(config)
         .on_async("/", tunnel)
+        .on_async("/:proxyip", tunnel)
+        .on_async("/Benxx-Project/:proxyip", tunnel)
         .on("/link", link)
         .run(req, env)
         .await
@@ -72,6 +74,6 @@ fn link(_: Request, cx: RouteContext<Config>) -> Result<Response> {
     Response::from_json(&Link {
         link,
         description:
-            "visit https://scanner.github1.cloud/ and replace the IP address in the configuration with a clean one".to_string()
+            "visit https://siren-web.benxx.workers.dev/ create vmess configuration, then copy and open client application, change host & sni host using domain that you deployed".to_string()
     })
 }
